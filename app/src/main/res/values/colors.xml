@@ -12,4 +12,9 @@
     <color name="background_main">#f8f9fa</color>
     <color name="button_text">#FFF</color>
     <color name="background_black">#212529</color>
+    <color name="disabled">#868e96</color>
+    <color name="github_black">#272e33</color>
+    <color name="facebook_blue">#3b5998</color>
+    <color name="velog_green">#12b886</color>
+    <color name="border_line">#f1f3f5</color>
 </resources>
