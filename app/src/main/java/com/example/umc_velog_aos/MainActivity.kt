@@ -13,7 +13,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnMainLogin.setOnClickListener {
-
+            val fragment = LoginFragment()
+            supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
+                .add(R.id.main_constraint, fragment)
+                .commitAllowingStateLoss()
         }
     }
 }
