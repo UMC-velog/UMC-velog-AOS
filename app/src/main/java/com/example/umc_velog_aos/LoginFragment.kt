@@ -16,10 +16,14 @@ class LoginFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
+        val btnSignup = binding.tvSignup
         binding.btnLoginClose.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .remove(this)
                 .commitAllowingStateLoss()
+        }
+        btnSignup.setOnClickListener {
+
         }
         return binding.root
     }

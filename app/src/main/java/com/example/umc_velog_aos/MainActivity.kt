@@ -14,9 +14,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnMainLogin.setOnClickListener {
             val fragment = LoginFragment()
+            val fragment2 = SignupFragment()
             supportFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-                .add(R.id.main_constraint, fragment)
+                //.setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
+                .add(R.id.main_constraint, fragment2)
                 .commitAllowingStateLoss()
         }
     }
