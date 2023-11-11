@@ -14,6 +14,8 @@
     <string name="sign_up_social">소셜 계정으로 회원가입</string>
     <string name="sign_up_already">계정이 이미 있으신가요?</string>
     <string name="sign_in_u"><u>로그인</u></string>
+    <string name="sign_in_link">로그인 링크가 이메일로 전송되었습니다.</string>
+    <string name="sign_up_link">회원가입 링크가 이메일로 전송되었습니다.</string>
 
     <string name="signup_policy"><u>이용약관</u>과 <u>개인정보취급방침</u>에 동의합니다.</string>
 
