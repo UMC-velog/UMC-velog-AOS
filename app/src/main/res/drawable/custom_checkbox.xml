@@ -3,5 +3,5 @@
     <item android:state_checked="false"
           android:drawable="@drawable/ic_signup_check_false"/>
     <item android:state_checked="true"
-          android:drawable="@drawable/ic_signup_check_false"/>
+          android:drawable="@drawable/ic_signup_check_true"/>
 </selector>
