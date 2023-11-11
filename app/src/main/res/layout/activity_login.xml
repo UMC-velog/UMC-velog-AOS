@@ -163,7 +163,7 @@
                 android:textSize="16sp"
                 android:textColor="@color/velog_green"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/linear_email_block"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
