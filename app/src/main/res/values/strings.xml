@@ -1,6 +1,22 @@
 <resources>
     <string name="app_name">UMC-velog-AOS</string>
 
-    <string name="signup"><u>회원가입</u></string>
+
+    <string name="login_edit_hint">이메일을 입력하세요</string>
+    <string name="sign_in">로그인</string>
+    <string name="sign_in_email">이메일로 로그인</string>
+    <string name="sign_in_social">소셜 계정으로 로그인</string>
+    <string name="sign_in_notyet">아직 회원이 아니신가요?</string>
+    <string name="sign_up_u"><u>회원가입</u></string>
+
+    <string name="sign_up">회원가입</string>
+    <string name="sign_up_email">이메일로 회원가입</string>
+    <string name="sign_up_social">소셜 계정으로 회원가입</string>
+    <string name="sign_up_already">계정이 이미 있으신가요?</string>
+    <string name="sign_in_u"><u>로그인</u></string>
+
     <string name="signup_policy"><u>이용약관</u>과 <u>개인정보취급방침</u>에 동의합니다.</string>
+
+
+    <!--    <string name=""-->
 </resources>
