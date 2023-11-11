@@ -31,7 +31,6 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             //로그인 상태
             if (textState) {
-
             } else { //회원가입 상태
                 binding.tvEmailSuccess.text = resources.getText(R.string.sign_up_link)
             }
@@ -51,6 +50,7 @@ class LoginActivity : AppCompatActivity() {
                 binding.tvSocialLogin.text = resources.getText(R.string.sign_up_social)
                 binding.tvSignupNotyet.text = resources.getText(R.string.sign_up_already)
                 binding.tvSignup.text = resources.getText(R.string.sign_in_u)
+                binding.tvEmailSuccess.text = resources.getText(R.string.sign_up_link)
             } else {
                 binding.tvLogin.text = resources.getText(R.string.sign_in)
                 binding.tvEmailLogin.text = resources.getText(R.string.sign_in_email)
@@ -58,6 +58,8 @@ class LoginActivity : AppCompatActivity() {
                 binding.tvSocialLogin.text = resources.getText(R.string.sign_in_social)
                 binding.tvSignupNotyet.text = resources.getText(R.string.sign_in_notyet)
                 binding.tvSignup.text = resources.getText(R.string.sign_up_u)
+                binding.tvEmailSuccess.text = resources.getText(R.string.sign_in_link)
+
             }
             textState = !textState
         }
