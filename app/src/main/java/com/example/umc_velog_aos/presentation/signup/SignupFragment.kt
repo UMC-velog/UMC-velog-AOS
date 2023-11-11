@@ -30,7 +30,7 @@ class SignupFragment : Fragment() {
         //val email = binding.tvSignupEmail.text
         val id = binding.etSignupEmailId.text
         val intro = binding.etSignupEmailInt.text
-        binding.tvSignupEmail.text = email
+        binding.tvSignupEmailHint.text = email
 
         setTextColor()
         btnListener()

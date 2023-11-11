@@ -19,6 +19,11 @@
 
     <string name="signup_policy"><u>이용약관</u>과 <u>개인정보취급방침</u>에 동의합니다.</string>
 
+    <string name="search_fail">검색 결과가 없습니다.</string>
+    <!--    <string name=""-->
+    <!--    <string name=""-->
+    <!--    <string name=""-->
+    <!--    <string name=""-->
 
     <!--    <string name=""-->
 </resources>

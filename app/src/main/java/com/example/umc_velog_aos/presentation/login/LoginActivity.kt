@@ -10,9 +10,9 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.umc_velog_aos.R
-import com.example.umc_velog_aos.util.hideKeyboard
 import com.example.umc_velog_aos.databinding.ActivityLoginBinding
 import com.example.umc_velog_aos.presentation.signup.SignupFragment
+import com.example.umc_velog_aos.util.hideKeyboard
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
