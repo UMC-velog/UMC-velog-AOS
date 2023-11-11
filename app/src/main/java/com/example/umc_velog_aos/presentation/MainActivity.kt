@@ -4,12 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import com.example.umc_velog_aos.presentation.Login.LoginActivity
+import com.example.umc_velog_aos.presentation.login.LoginActivity
 import com.example.umc_velog_aos.R
 import com.example.umc_velog_aos.databinding.ActivityMainBinding
-import com.example.umc_velog_aos.presentation.Search.SearchFragment
+import com.example.umc_velog_aos.presentation.search.SearchFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

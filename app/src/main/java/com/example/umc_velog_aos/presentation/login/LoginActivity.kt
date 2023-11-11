@@ -1,4 +1,4 @@
-package com.example.umc_velog_aos.presentation.Login
+package com.example.umc_velog_aos.presentation.login
 
 import android.graphics.Rect
 import android.os.Bundle
@@ -10,8 +10,9 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.umc_velog_aos.R
-import com.example.umc_velog_aos.Util.hideKeyboard
+import com.example.umc_velog_aos.util.hideKeyboard
 import com.example.umc_velog_aos.databinding.ActivityLoginBinding
+import com.example.umc_velog_aos.presentation.signup.SignupFragment
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -29,10 +30,15 @@ class LoginActivity : AppCompatActivity() {
     private fun btnListener() {
         //로그인 버튼
         binding.btnLogin.setOnClickListener {
+            val fragmentManager = supportFragmentManager.beginTransaction()
+            val fragmentSignup = SignupFragment()
             //로그인 상태
             if (textState) {
             } else { //회원가입 상태
                 binding.tvEmailSuccess.text = resources.getText(R.string.sign_up_link)
+                fragmentManager
+                    .add(R.id.frame_login, fragmentSignup)
+                    .commit()
             }
             binding.linearEmailBlock.visibility = View.GONE
             binding.linearEmailBlockSuccess.visibility = View.VISIBLE

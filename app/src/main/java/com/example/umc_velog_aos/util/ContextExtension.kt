@@ -1,4 +1,4 @@
-package com.example.umc_velog_aos.Util
+package com.example.umc_velog_aos.util
 
 import android.content.Context
 import android.view.View
