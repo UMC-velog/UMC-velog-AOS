@@ -30,11 +30,17 @@ class LoginActivity : AppCompatActivity() {
     private fun btnListener() {
         //로그인 버튼
         binding.btnLogin.setOnClickListener {
-            val fragmentManager = supportFragmentManager.beginTransaction()
-            val fragmentSignup = SignupFragment()
             //로그인 상태
             if (textState) {
             } else { //회원가입 상태
+                //작성한 이메일 정보
+                val bundle = Bundle()
+                val email = binding.etLogin.text.toString()
+                bundle.putString("email", email)
+                val fragmentSignup = SignupFragment()
+                fragmentSignup.arguments = bundle
+                val fragmentManager = supportFragmentManager.beginTransaction()
+
                 binding.tvEmailSuccess.text = resources.getText(R.string.sign_up_link)
                 fragmentManager
                     .add(R.id.frame_login, fragmentSignup)
@@ -95,6 +101,7 @@ class LoginActivity : AppCompatActivity() {
         }
         return super.dispatchTouchEvent(ev)
     }
+
     private fun emailWatcher(et: EditText) {
         et.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -102,6 +109,7 @@ class LoginActivity : AppCompatActivity() {
                 val isValidEmail = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
                 binding.btnLogin.isEnabled = isValidEmail
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
