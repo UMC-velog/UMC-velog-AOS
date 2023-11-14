@@ -45,7 +45,6 @@ class SearchFragment: Fragment() {
         mainPostList.add(post9)
         mainPostList.add(post10)
         mainPostList.add(post11)
-        mainPostList.add(post12)
 
         val postAdapter = PostAdapter(requireContext(), mainPostList)
         binding.searchRecycler.adapter = postAdapter
