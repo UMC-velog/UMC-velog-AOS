@@ -3,6 +3,7 @@ package com.example.umc_velog_aos.presentation
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.umc_velog_aos.presentation.login.LoginActivity
@@ -14,7 +15,6 @@ import com.example.umc_velog_aos.presentation.search.SearchFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val sfragmentManager = supportFragmentManager.beginTransaction()
     private val mainPostList = mutableListOf<PostDTO>()
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         val post9 = PostDTO("제목3", "본문3", "2023년 11월 14일", "유저3", 20)
         val post10 = PostDTO("제목1", "본문1", "2023년 11월 12일", "유저1", 10)
         val post11 = PostDTO("제목2", "본문2", "2023년 11월 13일", "유저2", 15)
-        val post12 = PostDTO("제목3", "본문3", "2023년 11월 14일", "유저3", 20)
 
         mainPostList.add(post1)
         mainPostList.add(post2)
@@ -45,7 +44,6 @@ class MainActivity : AppCompatActivity() {
         mainPostList.add(post9)
         mainPostList.add(post10)
         mainPostList.add(post11)
-        mainPostList.add(post12)
 
 
         val postAdapter = PostAdapter(this, mainPostList)
@@ -59,9 +57,15 @@ class MainActivity : AppCompatActivity() {
         val fragmentSearch = SearchFragment()
         //검색 창 변경
         binding.btnMainSearch.setOnClickListener {
-            sfragmentManager.replace(R.id.main_frame, fragmentSearch)
-                .commitAllowingStateLoss()
-            //만약에 이미 바뀌었으면 확인 후 새로고침 구현
+            val sfragmentManager = supportFragmentManager.beginTransaction()
+            val fragment = supportFragmentManager.findFragmentByTag("search")
+            if (fragment!=null && fragment is SearchFragment) {
+                sfragmentManager.detach(fragmentSearch).attach(fragmentSearch)
+                    .commitAllowingStateLoss()
+            }else{
+                sfragmentManager.replace(R.id.main_frame, fragmentSearch, "search")
+                    .commitAllowingStateLoss()
+            }
         }
         //로그인 창 띄우기
         binding.btnMainLogin.setOnClickListener {
@@ -78,10 +82,4 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this@MainActivity, "지원하지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
         }
     }
-//    private fun reloadPage(fragment: Fragment, fragmentManager: FragmentManager) {
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction
-//            .detach(fragment).attach(fragment)
-//            .commitAllowingStateLoss()
-//    }
 }
