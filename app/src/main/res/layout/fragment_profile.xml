@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+            android:id="@+id/profile_user_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+                android:id="@+id/iv_user_profile"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/disabled"/>
+        <TextView
+                android:id="@+id/user_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ssss"
+                android:textSize="18sp"
+                android:textColor="@color/background_black"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_below="@id/iv_user_profile"/>
+
+        <TextView
+                android:id="@+id/user_intro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ssss"
+                android:textSize="14sp"
+                android:textColor="#495057"
+                android:layout_marginTop="9dp"
+                android:layout_below="@id/user_nickname"/>
+        <View
+                android:id="@+id/post_border"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/user_intro"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="#E9ECEF"/>
+        <ImageButton
+                android:id="@+id/btn_github"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_post_github"
+                android:background="@color/transparent"
+                android:layout_below="@id/post_border"/>
+        <ImageButton
+                android:id="@+id/btn_home"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_post_home"
+                android:scaleType="centerCrop"
+                android:layout_alignTop="@id/btn_github"
+                android:layout_toEndOf="@id/btn_github"/>
+        <ImageButton
+                android:id="@+id/btn_email"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="centerCrop"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_post_email"
+                android:background="@color/transparent"
+                android:layout_alignTop="@id/btn_github"
+                android:layout_toEndOf="@id/btn_home"/>
+    </RelativeLayout>
+
+    <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_profile"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:tabTextColor="@color/background_black"
+            app:tabSelectedTextColor="@color/velog_green"
+            app:tabIndicatorColor="@color/velog_green"
+            android:backgroundTint="@color/transparent"
+            app:tabRippleColor="@color/transparent"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/profile_user_block">
+        <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="글"/>
+        <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="시리즈"/>
+        <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="소개"/>
+    </com.google.android.material.tabs.TabLayout>
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
