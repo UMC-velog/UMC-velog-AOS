@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             //로그인 상태
             if (textState) {
+
             } else { //회원가입 상태
                 //작성한 이메일 정보
                 val bundle = Bundle()
@@ -41,13 +42,14 @@ class LoginActivity : AppCompatActivity() {
                 fragmentSignup.arguments = bundle
                 val fragmentManager = supportFragmentManager.beginTransaction()
 
-                binding.tvEmailSuccess.text = resources.getText(R.string.sign_up_link)
+                //binding.tvEmailSuccess.text = resources.getText(R.string.sign_up_link)
                 fragmentManager
                     .add(R.id.frame_login, fragmentSignup)
                     .commit()
             }
-            binding.linearEmailBlock.visibility = View.GONE
-            binding.linearEmailBlockSuccess.visibility = View.VISIBLE
+            //비밀번호 인증 방식으로 변경
+            //binding.linearEmailBlock.visibility = View.GONE
+            //binding.linearEmailBlockSuccess.visibility = View.VISIBLE
         }
         //닫기 버튼
         binding.btnLoginClose.setOnClickListener {
@@ -62,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
                 binding.tvSocialLogin.text = resources.getText(R.string.sign_up_social)
                 binding.tvSignupNotyet.text = resources.getText(R.string.sign_up_already)
                 binding.tvSignup.text = resources.getText(R.string.sign_in_u)
-                binding.tvEmailSuccess.text = resources.getText(R.string.sign_up_link)
+                //binding.tvEmailSuccess.text = resources.getText(R.string.sign_up_link)
             } else {
                 binding.tvLogin.text = resources.getText(R.string.sign_in)
                 binding.tvEmailLogin.text = resources.getText(R.string.sign_in_email)
@@ -70,8 +72,7 @@ class LoginActivity : AppCompatActivity() {
                 binding.tvSocialLogin.text = resources.getText(R.string.sign_in_social)
                 binding.tvSignupNotyet.text = resources.getText(R.string.sign_in_notyet)
                 binding.tvSignup.text = resources.getText(R.string.sign_up_u)
-                binding.tvEmailSuccess.text = resources.getText(R.string.sign_in_link)
-
+                //binding.tvEmailSuccess.text = resources.getText(R.string.sign_in_link)
             }
             textState = !textState
         }
@@ -113,5 +114,9 @@ class LoginActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+    }
+
+    private fun postLogin() {
+
     }
 }

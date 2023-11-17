@@ -29,7 +29,7 @@ class SignupFragment : Fragment() {
         val name = binding.etSignupName.text
         //val email = binding.tvSignupEmail.text
         val id = binding.etSignupEmailId.text
-        val intro = binding.etSignupEmailInt.text
+        //val intro = binding.et.text
         binding.tvSignupEmailHint.text = email
 
         setTextColor()
@@ -81,6 +81,10 @@ class SignupFragment : Fragment() {
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         binding.tvSignupPolicy.text = spannable
+    }
+
+    private fun postSignup() {
+//        val apiService =
     }
 
 }

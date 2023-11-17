@@ -43,7 +43,7 @@
                     android:textSize="18sp"
                     android:textColor="@color/background_black"
                     android:textStyle="bold"
-                    android:layout_marginTop="48dp"
+                    android:layout_marginTop="38dp"
                     app:layout_constraintTop_toBottomOf="@id/tv_signup_subtitle"
                     app:layout_constraintStart_toStartOf="@id/tv_signup_subtitle"/>
             <EditText
@@ -136,10 +136,10 @@
                     app:layout_constraintStart_toStartOf="@id/et_signup_email_id"/>
 
             <TextView
-                    android:id="@+id/tv_signup_int"
+                    android:id="@+id/tv_signup_password"
                     android:layout_width="wrap_content"
-                    android:layout_height="27dp"
-                    android:text="한 줄 소개"
+                    android:layout_height="wrap_content"
+                    android:text="비밀번호"
                     android:textSize="18sp"
                     android:textColor="@color/background_black"
                     android:textStyle="bold"
@@ -147,25 +147,89 @@
                     app:layout_constraintTop_toBottomOf="@id/border_id"
                     app:layout_constraintStart_toStartOf="@id/border_id"/>
             <EditText
-                    android:id="@+id/et_signup_email_int"
+                    android:id="@+id/et_signup_password"
                     android:layout_width="297dp"
                     android:layout_height="38dp"
-                    android:hint="당신을 한 줄로 소개 해보세요"
+                    android:hint="비밀번호를 입력하세요"
                     android:textSize="18sp"
                     android:textColor="@color/background_black"
                     android:textColorHint="@color/text_hint"
                     android:background="@color/transparent"
                     android:paddingBottom="8dp"
                     android:layout_marginTop="16dp"
-                    app:layout_constraintTop_toBottomOf="@id/tv_signup_int"
-                    app:layout_constraintStart_toStartOf="@id/tv_signup_int"/>
+                    app:layout_constraintTop_toBottomOf="@id/tv_signup_password"
+                    app:layout_constraintStart_toStartOf="@id/tv_signup_password"/>
             <View
-                    android:id="@+id/border_int"
-                    android:layout_width="297dp"
+                    android:id="@+id/border_password"
+                    android:layout_width="192.16dp"
                     android:layout_height="1dp"
                     android:background="@color/text_hint"
-                    app:layout_constraintTop_toBottomOf="@id/et_signup_email_int"
-                    app:layout_constraintStart_toStartOf="@id/et_signup_email_int"/>
+                    app:layout_constraintTop_toBottomOf="@id/et_signup_password"
+                    app:layout_constraintStart_toStartOf="@id/et_signup_password"/>
+
+            <TextView
+                    android:id="@+id/tv_signup_repassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="비밀번호 확인"
+                    android:textSize="18sp"
+                    android:textColor="@color/background_black"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/border_password"
+                    app:layout_constraintStart_toStartOf="@id/border_password"/>
+            <EditText
+                    android:id="@+id/et_signup_repassword"
+                    android:layout_width="297dp"
+                    android:layout_height="38dp"
+                    android:hint="비밀번호를 다시 입력하세요"
+                    android:textSize="18sp"
+                    android:textColor="@color/background_black"
+                    android:textColorHint="@color/text_hint"
+                    android:background="@color/transparent"
+                    android:paddingBottom="8dp"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_signup_repassword"
+                    app:layout_constraintStart_toStartOf="@id/tv_signup_repassword"/>
+            <View
+                    android:id="@+id/border_repassword"
+                    android:layout_width="192.16dp"
+                    android:layout_height="1dp"
+                    android:background="@color/text_hint"
+                    app:layout_constraintTop_toBottomOf="@id/et_signup_repassword"
+                    app:layout_constraintStart_toStartOf="@id/et_signup_repassword"/>
+
+<!--            <TextView-->
+<!--                    android:id="@+id/tv_signup_int"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="27dp"-->
+<!--                    android:text="한 줄 소개"-->
+<!--                    android:textSize="18sp"-->
+<!--                    android:textColor="@color/background_black"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/border_repassword"-->
+<!--                    app:layout_constraintStart_toStartOf="@id/border_repassword"/>-->
+<!--            <EditText-->
+<!--                    android:id="@+id/et_signup_email_int"-->
+<!--                    android:layout_width="297dp"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:hint="당신을 한 줄로 소개 해보세요"-->
+<!--                    android:textSize="18sp"-->
+<!--                    android:textColor="@color/background_black"-->
+<!--                    android:textColorHint="@color/text_hint"-->
+<!--                    android:background="@color/transparent"-->
+<!--                    android:paddingBottom="8dp"-->
+<!--                    android:layout_marginTop="12dp"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/tv_signup_int"-->
+<!--                    app:layout_constraintStart_toStartOf="@id/tv_signup_int"/>-->
+<!--            <View-->
+<!--                    android:id="@+id/border_int"-->
+<!--                    android:layout_width="297dp"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:background="@color/text_hint"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/et_signup_email_int"-->
+<!--                    app:layout_constraintStart_toStartOf="@id/et_signup_email_int"/>-->
 
             <CheckBox
                     android:id="@+id/chk_signup"
@@ -174,8 +238,8 @@
                     android:layout_marginTop="23dp"
                     android:button="@null"
                     android:background="@drawable/custom_checkbox"
-                    app:layout_constraintTop_toBottomOf="@id/border_int"
-                    app:layout_constraintStart_toStartOf="@id/border_int"/>
+                    app:layout_constraintTop_toBottomOf="@id/border_repassword"
+                    app:layout_constraintStart_toStartOf="@id/border_repassword"/>
 
             <TextView
                     android:id="@+id/tv_signup_policy"
@@ -200,8 +264,7 @@
                     android:backgroundTint="@color/text_hint"
                     android:layout_marginTop="96dp"
                     app:layout_constraintTop_toBottomOf="@id/tv_signup_policy"
-                    app:layout_constraintStart_toStartOf="@id/chk_signup"
-                    />
+                    app:layout_constraintStart_toStartOf="@id/chk_signup"/>
             <Button
                     android:id="@+id/btn_signup_next"
                     android:layout_width="105.52dp"
@@ -215,13 +278,11 @@
                     android:layout_marginStart="16dp"
                     app:layout_constraintTop_toTopOf="@id/btn_signup_cancel"
                     app:layout_constraintStart_toEndOf="@id/btn_signup_cancel"/>
-            
             <View
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
                     app:layout_constraintTop_toBottomOf="@id/btn_signup_next"
                     app:layout_constraintBottom_toBottomOf="parent"/>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
