@@ -1,10 +1,21 @@
 package com.example.umc_velog_aos.dto
 
-data class PostDTO (
-    //val imageUrl: String,
+import java.util.Date
+
+data class Post(
+    val postImg: String,
+    val id: Int,
     val title: String,
-    val body: String,
-    val date: String,
-    val user: String,
-    val likes: Int
+    val content: String,
+    val writer: Writer,
+    val createdDate: String,
+    val likeCount: Int,
+)
+
+data class Writer(
+    val id: Int,
+    val username: String,
+    val password: String,
+    val email: String,
+    val createDate: String,
 )

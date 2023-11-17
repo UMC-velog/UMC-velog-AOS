@@ -4,15 +4,21 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.umc_velog_aos.R
-import com.example.umc_velog_aos.dto.PostDTO
+import com.example.umc_velog_aos.dto.Post
 
-class PostAdapter(private val context: Context, private val postList: List<PostDTO>)
+interface OnItemClickListener {
+    fun onItemClick(view: View, position: Int)
+}
+class PostAdapter(private val context: Context, private val postList: List<Post>)
     : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
     inner class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val postImage: ImageView = itemView.findViewById(R.id.post_image)
         val postTitle: TextView = itemView.findViewById(R.id.post_title)
         val postBody: TextView = itemView.findViewById(R.id.post_body)
         val postDate: TextView = itemView.findViewById(R.id.post_date)
@@ -28,11 +34,16 @@ class PostAdapter(private val context: Context, private val postList: List<PostD
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val currentPost = postList[position]
 
+        //이미지 설정
+        Glide.with(context)
+            .load(currentPost.postImg)
+            .into(holder.postImage)
+
         holder.postTitle.text = currentPost.title
-        holder.postBody.text = currentPost.body
-        holder.postDate.text = currentPost.date
-        holder.postUser.text = currentPost.user
-        holder.postLikes.text = currentPost.likes.toString()
+        holder.postBody.text = currentPost.content
+        holder.postDate.text = currentPost.createdDate
+        //holder.postUser.text = currentPost.writer.username
+        holder.postLikes.text = currentPost.likeCount.toString()
     }
     override fun getItemCount(): Int {
         return postList.size
