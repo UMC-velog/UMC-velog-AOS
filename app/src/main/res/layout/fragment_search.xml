@@ -9,7 +9,7 @@
             android:id="@+id/et_main_search"
             android:layout_width="328dp"
             android:layout_height="36dp"
-            android:background="@color/transparent"
+            android:background="@drawable/custom_searchbox"
             android:hint="검색어를 입력하세요"
             android:textSize="18sp"
             android:textColorHint="@color/text_hint"
