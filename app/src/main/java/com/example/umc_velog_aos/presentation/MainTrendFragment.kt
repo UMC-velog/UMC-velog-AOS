@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.umc_velog_aos.adapter.PostAdapter
+import com.example.umc_velog_aos.presentation.adapter.PostAdapter
 import com.example.umc_velog_aos.databinding.FragmentMainTrendBinding
-import com.example.umc_velog_aos.dto.Post
+import com.example.umc_velog_aos.data.dto.response.Post
 import com.example.umc_velog_aos.service.ApiClient
 import com.example.umc_velog_aos.service.BoardService
 import retrofit2.Call

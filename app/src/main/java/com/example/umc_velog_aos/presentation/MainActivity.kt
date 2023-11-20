@@ -1,13 +1,16 @@
 package com.example.umc_velog_aos.presentation
 
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.MotionEvent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.umc_velog_aos.R
 import com.example.umc_velog_aos.databinding.ActivityMainBinding
 import com.example.umc_velog_aos.presentation.login.LoginActivity
 import com.example.umc_velog_aos.presentation.search.SearchFragment
+import com.example.umc_velog_aos.util.hideKeyboard
 import com.google.android.material.tabs.TabLayout
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -60,7 +63,6 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this@MainActivity, "지원하지 않는 기능입니다.", Toast.LENGTH_SHORT).show()
         }
     }
-
     //트렌드 / 최신 탭 변경
     private fun changeTab() {
         binding.tabMain.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
@@ -79,5 +81,18 @@ class MainActivity : AppCompatActivity() {
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
+    }
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        val focusView = currentFocus
+        if (focusView != null) {
+            val rect = Rect()
+            focusView.getGlobalVisibleRect(rect)
+            val x = ev!!.x.toInt()
+            val y = ev.y.toInt()
+            if (!rect.contains(x, y)) {
+                hideKeyboard(focusView)
+            }
+        }
+        return super.dispatchTouchEvent(ev)
     }
 }
