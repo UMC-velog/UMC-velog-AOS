@@ -1,6 +1,6 @@
-package com.example.umc_velog_aos.dto.request
+package com.example.umc_velog_aos.data.dto.request
 
-data class Signup(
+data class SignupRequest(
     val userId: String,
     val userName: String,
     val password: String,

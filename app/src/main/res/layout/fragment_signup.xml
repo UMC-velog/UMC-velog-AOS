@@ -157,6 +157,7 @@
                     android:background="@color/transparent"
                     android:paddingBottom="8dp"
                     android:layout_marginTop="16dp"
+                    android:inputType="textPassword"
                     app:layout_constraintTop_toBottomOf="@id/tv_signup_password"
                     app:layout_constraintStart_toStartOf="@id/tv_signup_password"/>
             <View
@@ -189,6 +190,7 @@
                     android:background="@color/transparent"
                     android:paddingBottom="8dp"
                     android:layout_marginTop="12dp"
+                    android:inputType="textPassword"
                     app:layout_constraintTop_toBottomOf="@id/tv_signup_repassword"
                     app:layout_constraintStart_toStartOf="@id/tv_signup_repassword"/>
             <View
@@ -276,6 +278,7 @@
                     android:background="@drawable/btn_basic_24dp"
                     android:backgroundTint="@color/velog_green"
                     android:layout_marginStart="16dp"
+                    android:enabled="false"
                     app:layout_constraintTop_toTopOf="@id/btn_signup_cancel"
                     app:layout_constraintStart_toEndOf="@id/btn_signup_cancel"/>
             <View

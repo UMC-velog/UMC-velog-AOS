@@ -1,4 +1,4 @@
-package com.example.umc_velog_aos.presentation.signup
+package com.example.umc_velog_aos.data.dto
 
 data class LoginModel (
     var userId: String? = null,
