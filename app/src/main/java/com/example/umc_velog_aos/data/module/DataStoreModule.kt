@@ -1,4 +1,4 @@
-package com.example.umc_velog_aos.data
+package com.example.umc_velog_aos.data.module
 
 import android.content.Context
 import androidx.datastore.preferences.core.edit

@@ -10,9 +10,23 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.umc_velog_aos.R
+import com.example.umc_velog_aos.application.ApplicationClass
+import com.example.umc_velog_aos.data.dto.request.LoginRequest
+import com.example.umc_velog_aos.data.dto.response.JWTTokenResponse
 import com.example.umc_velog_aos.databinding.ActivityLoginBinding
 import com.example.umc_velog_aos.presentation.signup.SignupFragment
+import com.example.umc_velog_aos.service.ApiClient
+import com.example.umc_velog_aos.service.LoginService
 import com.example.umc_velog_aos.util.hideKeyboard
+import com.google.gson.GsonBuilder
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -24,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         btnListener()
-        emailWatcher(binding.etLogin)
+        //emailWatcher(binding.etLogin)
     }
 
     private fun btnListener() {
@@ -32,7 +46,9 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             //로그인 상태
             if (textState) {
+                //값이 둘 다 채워졌는지 확인해야 함
 
+                postLogin(binding.etLogin.text.toString(), binding.etPassword.text.toString())
             } else { //회원가입 상태
                 //작성한 이메일 정보
                 val bundle = Bundle()
@@ -64,6 +80,7 @@ class LoginActivity : AppCompatActivity() {
                 binding.tvSocialLogin.text = resources.getText(R.string.sign_up_social)
                 binding.tvSignupNotyet.text = resources.getText(R.string.sign_up_already)
                 binding.tvSignup.text = resources.getText(R.string.sign_in_u)
+                binding.etPassword.visibility = View.GONE
                 //binding.tvEmailSuccess.text = resources.getText(R.string.sign_up_link)
             } else {
                 binding.tvLogin.text = resources.getText(R.string.sign_in)
@@ -72,6 +89,7 @@ class LoginActivity : AppCompatActivity() {
                 binding.tvSocialLogin.text = resources.getText(R.string.sign_in_social)
                 binding.tvSignupNotyet.text = resources.getText(R.string.sign_in_notyet)
                 binding.tvSignup.text = resources.getText(R.string.sign_up_u)
+                binding.etPassword.visibility = View.VISIBLE
                 //binding.tvEmailSuccess.text = resources.getText(R.string.sign_in_link)
             }
             textState = !textState
@@ -116,7 +134,32 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    private fun postLogin() {
+    private fun postLogin(id: String, password: String) {
+        val apiService = ApiClient.getApiClient().create(LoginService::class.java)
+        val loginRequest = LoginRequest(id, password)
+        val requestBody = GsonBuilder()
+            .serializeNulls().create()
+            .toJson(loginRequest)
+            .toRequestBody("application/json".toMediaTypeOrNull())
+        apiService.postLogin(requestBody).enqueue(object: Callback<JWTTokenResponse> {
+            override fun onResponse(call: Call<JWTTokenResponse>, response: Response<JWTTokenResponse>) {
+                if (response.isSuccessful) {
+                    val jwtTokenResponse = response.body()
+                    val accessToken = jwtTokenResponse?.accessToken ?: ""
+                    val refreshToken = jwtTokenResponse?.refreshToken ?: ""
+                    println( response.body())
+                    //코루틴으로 비동기 처리하기
+                    CoroutineScope(Dispatchers.Main).launch {
+                        ApplicationClass.getInstance().getDataStore().saveTokens(accessToken, refreshToken)
+                    }
+                } else {
+                    println("HTTP 오류: ${response.code()}")
+                }
+            }
+            override fun onFailure(call: Call<JWTTokenResponse>, t: Throwable) {
+                t.printStackTrace()
+            }
+        })
 
     }
 }

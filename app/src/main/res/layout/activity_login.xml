@@ -110,7 +110,7 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:background="@drawable/btn_basic"
-                android:enabled="false"
+                android:enabled="true"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="@id/linear_password_block"
                 app:layout_constraintTop_toBottomOf="@id/linear_password_block"/>

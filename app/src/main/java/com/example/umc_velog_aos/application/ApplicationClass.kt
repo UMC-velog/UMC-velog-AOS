@@ -1,7 +1,7 @@
 package com.example.umc_velog_aos.application
 
 import android.app.Application
-import com.example.umc_velog_aos.data.DataStoreModule
+import com.example.umc_velog_aos.data.module.DataStoreModule
 
 class ApplicationClass : Application() {
     private lateinit var dataStore : DataStoreModule

@@ -11,8 +11,6 @@ interface LoginService {
 
     @POST("/auth/login")
     fun postLogin(
-        @Header("userId") username: String,
-        @Header("password") password: String,
         @Body requestBody: RequestBody): Call<JWTTokenResponse>
 
     @POST("/auth/logout")
