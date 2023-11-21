@@ -35,17 +35,21 @@ class PostAdapter(private val context: Context, private val postList: List<Post>
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val currentPost = postList[position]
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.getDefault())
-        val outputFormat = SimpleDateFormat("yyyy년 MM월 dd일 ·", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("yyyy년 MM월 dd일 · ", Locale.getDefault())
         val parsedDate: Date = inputFormat.parse(currentPost.createdDate) ?: Date()
+        val commentCount = currentPost.comments.size
+        val dateComment = "${outputFormat.format(parsedDate)} ${commentCount}개의 댓글"
 
-        //이미지 설정
-        Glide.with(context)
-            .load(currentPost.postImg)
-            .into(holder.postImage)
+        if(currentPost.postImg != null){
+            //이미지 설정
+            Glide.with(context)
+                .load(currentPost.postImg)
+                .into(holder.postImage)
+        } else { holder.postImage.visibility = View.GONE }
 
         holder.postTitle.text = currentPost.title
         holder.postBody.text = currentPost.content
-        holder.postDate.text = outputFormat.format(parsedDate)
+        holder.postDate.text = dateComment
         holder.postUser.text = currentPost.writerId
         holder.postLikes.text = currentPost.likeCount.toString()
 

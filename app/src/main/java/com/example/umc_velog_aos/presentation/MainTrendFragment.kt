@@ -44,7 +44,7 @@ class MainTrendFragment: Fragment() {
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
                 if (response.isSuccessful) {
                     val posts: List<Post>? = response.body()
-                    println( response.body())
+                    //println( response.body())
                     posts?.let {
                         mainPostList.addAll(it) // 받은 데이터를 리스트에 추가
                         postAdapter.notifyDataSetChanged() // 어댑터에 데이터가 변경되었음을 알림
