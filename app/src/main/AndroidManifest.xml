@@ -24,5 +24,7 @@
         </activity>
         <activity android:name=".presentation.login.LoginActivity"
                   android:exported="true"/>
+        <activity android:name=".presentation.post.PostWriteActivity"
+                  android:exported="true"/>
     </application>
 </manifest>

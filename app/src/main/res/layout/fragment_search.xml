@@ -16,6 +16,7 @@
             android:textColor="@color/background_black"
             android:paddingStart="44dp"
             android:paddingEnd="16dp"
+            android:inputType="text|textNoSuggestions"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -47,6 +48,7 @@
             android:id="@+id/search_recycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:overScrollMode="never"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/et_main_search"
             app:layout_constraintEnd_toEndOf="@id/et_main_search"

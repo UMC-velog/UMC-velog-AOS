@@ -1,18 +1,33 @@
 package com.example.umc_velog_aos.presentation.search
 
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.umc_velog_aos.adapter.PostAdapter
+import com.bumptech.glide.Glide
 import com.example.umc_velog_aos.databinding.FragmentSearchBinding
-import com.example.umc_velog_aos.dto.Post
+import com.example.umc_velog_aos.data.dto.response.SearchResponse
+import com.example.umc_velog_aos.presentation.adapter.SearchAdapter
+import com.example.umc_velog_aos.service.ApiClient
+import com.example.umc_velog_aos.service.BoardService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class SearchFragment: Fragment() {
+class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
-    private val mainPostList = mutableListOf<Post>()
+    private val searchPostList = mutableListOf<SearchResponse>()
+    private lateinit var postAdapter: SearchAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,25 +37,57 @@ class SearchFragment: Fragment() {
         binding = FragmentSearchBinding.inflate(layoutInflater, container, false)
 
 
-
-        val postAdapter = PostAdapter(requireContext(), mainPostList)
+        postAdapter = SearchAdapter(requireContext(), searchPostList)
         binding.searchRecycler.adapter = postAdapter
         val layoutManager = LinearLayoutManager(requireContext())
         binding.searchRecycler.layoutManager = layoutManager
-
         binding.tvResult.visibility = View.VISIBLE
 
+        binding.etMainSearch.addTextChangedListener(object : TextWatcher {
+            private val DELAY: Long = 300
+            private var timer: CountDownTimer? = null
 
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-        //1. 초기화면은 빈 화면
-        //2. 검색어 입력 시 검색 창 옅어짐 -> selector로 배경 변경
-        //3. 입력 시 API를 통해 데이터 불러옴
-        //4. 클릭 시 이미지, 제목 본문은 post fragment로, 유저부분은 profile로 이동
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
+            override fun afterTextChanged(s: Editable?) {
+                timer?.cancel() // 타이머 초기화
+                timer = object : CountDownTimer(DELAY, DELAY) {
+                    override fun onTick(millisUntilFinished: Long) {}
 
-
-
-
+                    override fun onFinish() {
+                        CoroutineScope(Dispatchers.Main).launch {
+                            getSearchBoard(s.toString())
+                        }
+                    }
+                }.start()
+            }
+        })
+//        CoroutineScope(Dispatchers.Main).launch {
+//            getSearchBoard("insta")
+//        }
         return binding.root
+    }
+
+    private suspend fun getSearchBoard(keyword: String) {
+        val apiService = ApiClient.getApiClient().create(BoardService::class.java)
+        lifecycleScope.launch {
+            try {
+                val response = apiService.searchBoards(keyword)
+                if (response == null) {
+
+                } else {
+                    response?.let {
+                        searchPostList.clear()
+                        searchPostList.addAll(it) // 받은 데이터를 리스트에 추가
+                        postAdapter.notifyDataSetChanged() // 어댑터에 데이터가 변경되었음을 알림
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(requireContext(), "다시 시도해주세요", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

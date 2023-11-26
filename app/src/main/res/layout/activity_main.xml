@@ -8,12 +8,13 @@
         android:layout_height="match_parent"
         tools:context=".presentation.MainActivity"
         android:background="@color/background_main">
-    <RelativeLayout
+    <LinearLayout
             android:id="@+id/custom_topbar"
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="328dp"
             android:layout_height="64dp"
             android:paddingVertical="12dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -23,9 +24,11 @@
                 android:layout_height="20dp"
                 android:src="@drawable/title_velog"
                 android:layout_marginEnd="20dp"
-                android:layout_marginStart="5dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true"/>
+                android:layout_marginStart="5dp"/>
+        <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"/>
         <ImageButton
                 android:id="@+id/btn_main_mode"
                 android:layout_width="40dp"
@@ -33,29 +36,48 @@
                 android:paddingEnd="6dp"
                 android:src="@drawable/ic_main_day_mode"
                 android:background="@color/transparent"
-                android:layout_marginEnd="4dp"
-                android:layout_toLeftOf="@id/btn_main_search"/>
+                android:layout_marginEnd="4dp"/>
         <ImageButton
                 android:id="@+id/btn_main_search"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_main_search"
                 android:background="@color/transparent"
-                android:layout_marginEnd="8dp"
-                android:layout_toLeftOf="@id/btn_main_login"/>
+                android:layout_marginEnd="8dp"/>
         <TextView
                 android:id="@+id/btn_main_login"
-                android:layout_width="73.52dp"
+                android:layout_width="wrap_content"
                 android:layout_height="32dp"
                 android:gravity="center"
                 android:background="@drawable/btn_basic_16dp"
                 android:backgroundTint="@color/background_black"
                 android:text="로그인"
                 android:textSize="16sp"
+                android:paddingHorizontal="12dp"
                 android:textColor="@color/button_text"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"/>
-    </RelativeLayout>
+                android:visibility="visible"/>
+        <LinearLayout
+                android:id="@+id/popup_profile"
+                android:layout_width="61dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:visibility="gone">
+            <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/img_basic_profile"/>
+            <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+            <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:paddingTop="5dp"
+                    android:src="@drawable/ic_main_tab"/>
+        </LinearLayout>
+    </LinearLayout>
     <FrameLayout
             android:id="@+id/main_frame"
             android:layout_width="328dp"
@@ -83,31 +105,44 @@
                         android:layout_width="80dp"
                         android:layout_height="48dp"
                         android:layout_marginEnd="8dp"
-                        android:text="트렌딩"            />
+                        android:text="트렌딩"/>
                 <com.google.android.material.tabs.TabItem
                         android:layout_width="80dp"
                         android:layout_height="48dp"
                         android:text="최신"/>
             </com.google.android.material.tabs.TabLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_layout"
+            <LinearLayout
+                    android:id="@+id/popup_main"
                     android:layout_width="84dp"
                     android:layout_height="32dp"
                     android:background="@color/background_main"
                     android:paddingHorizontal="8dp"
                     android:elevation="2dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
                     app:layout_constraintStart_toEndOf="@id/tab_main"
                     app:layout_constraintTop_toTopOf="@id/tab_main"
                     app:layout_constraintBottom_toBottomOf="@id/tab_main">
-                <AutoCompleteTextView
-                        android:id="@+id/tv_item"
-                        android:layout_width="match_parent"
+                <TextView
+                        android:id="@+id/tv_popup"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/transparent"
-                        android:inputType="none"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                        android:text="오늘"
+                        android:textSize="12sp"
+                        android:textColor="@color/background_black"/>
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:paddingTop="5dp"
+                        android:src="@drawable/ic_main_tab"/>
+            </LinearLayout>
             <ImageView
+                    android:id="@+id/popup_extra"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_main_extra"

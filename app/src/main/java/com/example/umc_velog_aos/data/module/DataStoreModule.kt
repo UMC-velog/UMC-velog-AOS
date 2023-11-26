@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 
@@ -16,7 +17,7 @@ class DataStoreModule(private val context: Context) {
     private val refreshTokenKey = stringPreferencesKey("REFRESH_TOKEN")
 
     //accessToken
-    val accessToken : Flow<String> = context.dataStore.data
+    val accessToken: Flow<String> = context.dataStore.data
         .catch { exception ->
             if (exception is IOException) {
                 emit(emptyPreferences())
@@ -24,9 +25,10 @@ class DataStoreModule(private val context: Context) {
                 throw exception
             }
         }
-        .map {preferences ->
+        .map { preferences ->
             preferences[accessTokenKey] ?: ""
         }
+
     //refreshToken
     val refreshToken: Flow<String> = context.dataStore.data
         .catch { exception ->
@@ -39,11 +41,24 @@ class DataStoreModule(private val context: Context) {
         .map { preferences ->
             preferences[refreshTokenKey] ?: ""
         }
+
     //token들을 각 키 값에 저장
     suspend fun saveTokens(accessToken: String, refreshToken: String) {
         context.dataStore.edit { preferences ->
             preferences[accessTokenKey] = accessToken
             preferences[refreshTokenKey] = refreshToken
+        }
+    }
+    suspend fun hasToken(): Boolean {
+        return try {
+            context.dataStore.data.first()[accessTokenKey] != null
+        } catch (e: Exception) {
+            false
+        }
+    }
+    suspend fun removeToken(key: String) {
+        context.dataStore.edit { preferences ->
+            preferences.remove(stringPreferencesKey(key))
         }
     }
 }

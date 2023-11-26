@@ -1,5 +1,7 @@
 package com.example.umc_velog_aos.presentation.login
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.text.Editable
@@ -14,6 +16,7 @@ import com.example.umc_velog_aos.application.ApplicationClass
 import com.example.umc_velog_aos.data.dto.request.LoginRequest
 import com.example.umc_velog_aos.data.dto.response.JWTTokenResponse
 import com.example.umc_velog_aos.databinding.ActivityLoginBinding
+import com.example.umc_velog_aos.presentation.MainActivity
 import com.example.umc_velog_aos.presentation.signup.SignupFragment
 import com.example.umc_velog_aos.service.ApiClient
 import com.example.umc_velog_aos.service.LoginService
@@ -40,15 +43,13 @@ class LoginActivity : AppCompatActivity() {
         btnListener()
         //emailWatcher(binding.etLogin)
     }
-
     private fun btnListener() {
         //로그인 버튼
         binding.btnLogin.setOnClickListener {
             //로그인 상태
             if (textState) {
-                //값이 둘 다 채워졌는지 확인해야 함
-
                 postLogin(binding.etLogin.text.toString(), binding.etPassword.text.toString())
+                finish()
             } else { //회원가입 상태
                 //작성한 이메일 정보
                 val bundle = Bundle()
@@ -151,6 +152,7 @@ class LoginActivity : AppCompatActivity() {
                     //코루틴으로 비동기 처리하기
                     CoroutineScope(Dispatchers.Main).launch {
                         ApplicationClass.getInstance().getDataStore().saveTokens(accessToken, refreshToken)
+
                     }
                 } else {
                     println("HTTP 오류: ${response.code()}")
